@@ -27,11 +27,11 @@ $(function(){
         return false;
     });
 
-    if (Modernizr.touch) {
-        $imgs.swipe(swipeOptions);
-    } else {
-        $('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
-    }
+//    if (Modernizr.touch) {
+//        $imgs.swipe(swipeOptions);
+//    } else {
+//        $('.jqzoom').jqzoom({zoomType: 'innerzoom', title: false});
+//    }
     
     $('ul#products li .content').dotdotdot(); // trim product descriptions in the small layout
     $('ul#featured_products li .content').dotdotdot(); // trim product descriptions in the small layout
