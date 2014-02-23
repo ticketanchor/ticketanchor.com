@@ -1,9 +1,29 @@
-## The New Broadleaf Commerce Demo Site
+Deploy website package
 
-This Maven project is meant to be used as a solid started project for any [Broadleaf Commerce](http://www.broadleafcommerce.org) application. It has many sensible defaults set up along with examples of how a fully functioning eCommerce site based on Broadleaf might work.
+Login into EC2 instance (username/password is bitnami/bitnami)
 
-One typical way of using this project would be to follow the [Getting Started Guide](http://docs.broadleafcommerce.org/current/Getting-Started.html), which would walk you through using our pre-bundled Eclipse workspace.
+ssh -i ~/.ssh/ticketanchor-demo.pem bitnami@54.213.232.192
 
-However, if you would like to utilize your own workspace or IDE configuration, you may prefer to fork this project. This would give you the added benefit of being able to pull in upstream changes as we work to improve the DemoSite.
+Get code from github.com
 
-> Note: If you are going to fork this project, we recommend basing your work on the `master` branch, and not the develop branch. develop is our ongoing development branch and there are no guarantees of stability on it.
+wget https://codeload.github.com/ticketanchor/ticketanchor.com/zip/master -O ticketanchor.com.zip
+
+Unzip the downloaded file into “ticketanchor.com-master”
+
+unzip ticketanchor.com.zip
+
+build the package
+
+cd ~/ticketanchor.com-master
+mvn clean install -DskipTests=true
+
+copy the ROOT.war from ~/ticketanchor.com/site/target/ROOT.war to /opt/bitnami/apache-tomcat/webapps
+
+sudo  cp ~/ticketanchor.com-master/site/target/ROOT.war  /opt/bitnami/apache-tomcat/webapps/
+
+tomcat will redeploy the ROOT war package
+
+Deploy admin package
+	The same as the above steps, but for step 5:
+	
+sudo  cp ~/ticketanchor.com-master/site/target/admin.war  /opt/bitnami/apache-tomcat/webapps/
